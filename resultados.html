@@ -1,0 +1,150 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Grupo 15</title>
+    <link rel="icon" type="imagen/png" href="fotos/logo.png">
+    <link rel="stylesheet" href="estilos.css">
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="java.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="" class="brand-logo"><i class="material-icons"></i>Grupo 15</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="informacion.html">Información</a></li>
+                    <li><a href="hardware.html">Hardware</a></li>
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="interfaz.html">Intefaz de Usuario</a></li>
+                </ul>
+
+            </div>
+          </div>
+        </nav>
+    <main class="main">
+        <div class="container">
+            <h1>Software Desarrollado</h1>
+            <h4><b>Descripción general</b></h4>
+            <p>El software que implementamos fue hecho en Octave y Matlab, usando este ultimo para crear los clasificadores. 
+                El detalle del softwware se visualiza en el diagrama de software que mostramos a continuación:</p>
+            <img src="fotos/S1.png" width="700">
+
+            <b>1. Etapa de preprocesamiento</b>
+            <p>El preprocesamiento consta de aplicar una serie de filtros que incluyen:<br><br>
+                - Homogeneizar la iluminación de la imagen<br>
+                - Transformarla a escala de grises<br>
+                - Filtro gausseano<br>
+                - Filtro gradiente<br>
+                - Transformarla a escala binaria<br>
+                - Erocionar la imagen<br>
+                - Rellenar agujeros <br>
+                - Elegir el area más grande<br><br>
+                Luego de aplicar los filtros, buscamos las esquinas y alimentamos la transformada homografía. El resultado de esta 
+                etapa se visualiza en la siguiente imagen:
+            </p>
+            <div class="caja">
+                <img src="fotos/pantalla_no.png" width="450"><img src="fotos/flecha.png" width="150" height="75"><img src="fotos/pantalla_cub.png" width="250">        
+            </div> 
+
+            <b>2. Etapa de clasificador de pantallas</b>
+            <p>
+                Aquí se entrena un clasificador, con 809 imagenes de la pantalla A, 552 imagenes de la pantalla B y 3544 imagenes de la 
+                pantalla C. Usamos 90% de las imagenes para trainig y el 10% sobrante para testing. Los resultados de las distintas simulaciónes 
+                se ven en la siguiente imagen. Dados los resultados, finalmente empleamos el clasificador support vector machinne de radio, ya que
+                logró un desempeño de 99.8%
+            </p>
+            <img src="fotos/clasificador_pantalla.png" width="500">
+
+            <b>3. Etapa de clasificador de palabras</b>
+            <p>
+                Debido a la cantidad de imagenes solo se desarrollo el clasificador de palabras del modelo A,usando las palabras Rate, FiO2, Mvexp,
+                Ppeak, PEEP y Vtexp. Manejamos un total de 2376 fotografías, usando el 90% para entrenar los modelos y el 10% para su testeo. Debido 
+                los resultados obtenidos nos quedamos con el clasificador que usaba support vector machinne polinomial con un desempeño de 99.33%
+            </p>
+            <img src="fotos/clasificador_palabras.png" width="500">
+
+            <b>4. Etapa de reconocimiento optico de caracteres</b>
+            <p>
+                Para detectar los numeros, se empleo una red neuronal pre-entrenada, a la que se le entregaban imagenes que pasan por un threshold de 220,
+                tomando valor 255 solo si supera dicho limite. Los resultados obtenidos se adjuntan a continuación:
+            </p>
+            <img src="fotos/ocr.png" width="800">
+
+            <b>5. Resultado en servidor</b>
+
+            <b>6. Actualización OTA</b>
+            <p>
+                Anteriormente el envío de datos era a través del servidor Servidor web en dropbox: Servidor web que se puede ver aquí:
+            </p>
+            <a class="waves-effect waves-light btn-large" href="https://www.dropbox.com/sh/vrme1ruk6gx5y1v/AABErIKXbvC7dDGm928bih0Ja?dl=0">Servidor</a>
+            <p>
+                Y de este servidor se sacan los datos que se despliegan en la interacción de usuario de la presente pagina web. Todos estos 
+                cambios se notifican gracias a la <b>actualización OTA:</b><br><br>
+                - Método de actualización remota de firmware/software.<br>
+                - Uso de la plataforma Upswift.<br>
+                - Permite registro de dispositivo con dirección IP.
+            </p>
+            <div class="caja">
+                <img src="fotos/upswift.png" width="600"><img src="fotos/simbolito.png" width="250">
+            </div>
+
+            <b>7. Resultado interfaz de usuario</b>
+
+            <h4><b>Avances respecto a la entrega anterior</b></h4>
+            <p><b>1. Clasificador de pantallas</b></p>
+            <p>
+                En la entrega anterior, señalamos que apesar de tener buenos resultados en este clasificador (Desempeño de 99.8%),
+                el tiempo que demoraba en efectuar dicha clasificación era demasiado, puesto que demoraba 19.1 segundos en clasificar
+                solo una imagen, por lo que se señaló que lo mejorariamos trabajando con imagenes de menor tamaño,especificamente
+                de 50x50 aplacando re-size a las imagenes existentes y traspasandolas a escala rgb.
+            </p>
+            <div class="caja">
+            <img src="fotos/base_anterior.png" width="400"><img src="fotos/flecha.png" width="150" height="75"><img src="fotos/base_nueva.png" width="400">        
+            </div>    
+            <p>    
+                Sin embargo, a pesar de mejorar 
+                la velocidad a 0.5 segundos, el desempeño bajo considerablemente, razón por la que decidimos mantener el clasificador
+                anterior. Creemos que esto se debe a que al reducir el tamaño de la imagen, los pixeles se comprimen y se pierden las
+                diferencias entre las tablas de las imagenes que es la unica diferencia relevante entre los modos de pantallas.
+            </p>
+            <img src="fotos/clasificadores.png" width="700">
+            <p><b>2. Desarrollo de la interfaz de usuario</b></p>
+            <p>
+                Para mejorar la experiencia de usuario y facilitar el monitoreo de los pacientes desarrollamos una interfaz de
+                usuario contenida en esta pagina web. Para desarrollarla usamos los recursos <b>html5</b>, <b>javaScript</b> y 
+                <b>CSS</b> a través del editor de texto <b>Visual Studio Code</b>. Para el manejo de bases de datos, llamesé 
+                archivos .json e imagenes de ventiladores, implementando el uso de <b>jQuery</b> con la técnica Ajax, logrando 
+                aumentar la usabilidad de la página y evitar la información redundante.
+                <br><br>             
+            </p>
+
+            <p><b>3. Modificación del sistema de alerta</b></p>
+            <p>
+                Como el objetivo del proyecto es que un médico pueda supervisar al paciente desde donde sea, consideramos que 
+                el uso de solo el led era limitado, razón por la que modificamos el codigo, a modo de que siempre se genere un json, 
+                pero en caso de no detectar la pantalla, las palabras en esta o los valores que toman las palabras, este json este vacio.
+                De este modo el led se enciende si el json es una cadena vacia.
+            </p>
+            <img src="fotos/led.png" width="500">
+            <p>
+                Esta modificación se hizo para lograr que si el medico actualiza los datos del paciente y existe algun error 
+                con la camara, se active un pop-up de alerta, que señalé que existe un error en la captura de datos, de esta 
+                forma el médico podrá ir a arreglarlo o alertar a alguien para que verifique la posicion de la camara. A continuación,
+                se muestra como es esta alerta:
+            </p>
+            <img src="fotos/error.png" width="500">
+            <p>El funcionamiento de esta se mostrará a continuación, en la pestaña del menú: Interfaz de usuario</p>
+        </div>
+    </main>
+    <footer class="page-footer">
+        <h5 class="footer">Carla Fonfach - Diego Moya - Valentina Muñoz</h5>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Grupo 15</title>
+    
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="java.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="inicio.html" class="brand-logo"><i class="material-icons">local_hospital</i>Grupo 15</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="informacion.html">Información</a></li>
+                    <li><a href="hardware.html">Hardware</a></li>
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="interfaz.html">Intefaz de Usuario</a></li>
+                </ul>
+
+            </div>
+          </div>
+        </nav>
+    <main class="main">
+        <div class="container">
+            <h1>Interfaz de Usuario</h1>
+            <p>
+                Para facilitar el monitoreo de los ventiladores mecanicos de los distintos pacientes creamos este módulo de
+                interacción de usuario, en el cual los médicos tendrán acceso a los graficos correspondiente a la información
+                vital de cada paciente y la opción de ver el detalle de la datos de dichos pacientes a través de una tabla.
+            </p>
+            <h4>Imagenes capturadas</h4>
+            <p>Para ver los datos del siguiente paciente, por favor apretar las flechas que estan a los costados de la imágen.</p>
+            <div class="carousel">
+                <a class="btn-floating btn-large waves-effect waves-light" id="retroceder"><i class="material-icons">chevron_left</i></a>
+                <div id="imagen"></div>
+                <a class="btn-floating btn-large waves-effect waves-light" id="avanzar"><i class="material-icons">chevron_right</i></a>           
+            </div>
+            <h4>Detalle de los datos fisiológicos</h4>
+            <p>Para visualizar la tabla presione el botón actualizar tabla. Los datos desplegados corresponden a los datos del
+                paciente cuyo grafico se esta desplegando en la sección imagenes capturadas.
+            </p>
+            <a class="waves-effect waves-light btn-large" id="btn">Actualizar Tabla</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variables</th>
+                        <th>Valores</th>
+                    </tr>
+                </thead>
+                <tbody id = "actualice">
+    
+                </tbody>
+            </table>
+            <h4>Más detalles</h4>
+            <p>Si te interesa saber más del proyecto, te dejamos aquí el servidor que estamos usando y los códigos para
+                que lo hagas tu mismo.
+            </p>
+            <a class="waves-effect waves-light btn-large" href="https://www.dropbox.com/sh/vrme1ruk6gx5y1v/AABErIKXbvC7dDGm928bih0Ja?dl=0">Servidor</a>
+            <br><br>
+        </div>
+
+    </main>
+    <footer class="page-footer">
+        <h5 class="footer">Carla Fonfach - Diego Moya - Valentina Muñoz</h5>
+
+    </footer>
+
+</body>
+</html>

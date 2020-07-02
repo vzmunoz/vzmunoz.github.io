@@ -1,0 +1,166 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Grupo 15</title>
+    <link rel="icon" type="imagen/png" href="fotos/logo.png">
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <script src="java.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="container">
+                <a href="" class="brand-logo"><i class="material-icons">local_hospital</i>Grupo 15</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="inicio.html">Inicio</a></li>
+                    <li><a href="informacion.html">Información</a></li>
+                    <li><a href="hardware.html">Hardware</a></li>
+                    <li><a href="software.html">Software</a></li>
+                    <li><a href="interfaz.html">Intefaz de Usuario</a></li>
+                </ul>
+
+            </div>
+          </div>
+        </nav>
+    <main class="main">
+        <div class="container">
+            <h1>Hardware Implementado</h1>
+
+            <h4><b>Descripción general</b></h4>
+            <img src="fotos/h1.png" width="700">
+
+            <h4><u>Circuito general: Fuente de alimentación</u></h4>
+            <img src="fotos/ckto_diego1.png" width="700">
+
+            <h4><u>Transformador</u></h4>
+            <p>
+                El transformador usado es de 220:10 y 70 VA.<br> 
+                Para determinar el modelo del secundario es necesario hacer dos cálculos. El primero es el voltaje peak alcanzado:<br><br>
+                V<sub>peak</sub> = 10×√2 = 14,1 V<sub>ac</sub><br><br>
+                Considerar además tensión en el vacío:<br><br>
+                V<sub>final</sub> = 14,1×1,06 = 15 V<sub>ac</sub><br><br>
+                Para la corriente en el transformador:<br><br>
+                I<sub>T</sub> = 70/10 = 7A<br><br>
+                Para la resistencia en serie equivalente de secundario:<br><br>
+                R<ub>ser</ub> = 1/7 = 0,14 ohm<br><br>
+                Finalmente, se obtiene el secundario modelado con los valores obtenidos anteriormente.
+            </p>
+            <img src="fotos/trafito.png" width="300">
+
+            <h4><u>Rectificación y Filtrado</u></h4>
+            <p>
+                Importancia en estas dos partes es la elección del diodo y el valor del capacitor. 
+                Como primera aproximación se usó diodo 1N5400 y capacitor de 3300 uF.
+            </p>
+            <img src="fotos/ckto_diego2.png" width="600">
+            <p>Con esto se puede obtener un gráfico de tensión previo a la rectificación.</p>
+            <img src="fotos/simu_diego.png" width="800">
+            <p>También se puede obtener un nuevo gráfico con corriente circulando por los diodos y el voltaje después del filtrado.</p>
+            <img src="fotos/simu_diego2.png" width="800">
+
+            <h4><u>Verificación diodos etapa rectificadora</u></h4>
+            <p>Verificar corriente peak, y periodo y tiempo de conducción en un diodo.</p>
+            I<sub>D</sub> = (9,28 A×4,6 ms)/(20 ms)  = 2,13 A<br><br>
+            I<sub>D</sub> = 2,13 A < 3 A
+        
+            <h4><u>Regulador</u></h4>
+            <p>
+                Regulador elegido: LM323. Entrega 5V a 3A la salida. Uso de capacitor recomendado en hoja de datos: 0,1 uF.
+            </p>
+            <img src="fotos/simu_diego3.png" width="800">
+
+            <h4><u>Otros cálculos fuente de alimentación</u></h4>
+            <p>
+                •	Disipación de potencia en diodos (7,68 W).<br>
+                •	Tensión inversa del diodo (< 50).<br>
+                •	Fusible de entrada (300 mA). Es necesario saber potencia disipada por diodos, la potencia disipada por el regulador, y la potencia entregada a la salida.
+            </p>
+            
+            <h4><u>Batería</u></h4>
+            <p>
+                - Batería li-on<br>
+                - Capacidad 10000mAH<br>
+                - Voltaje 3.7 [V]
+                <br><br>
+                <b>Requerimientos:</b><br>
+                -Raspberry ≈ 26 W 5200mAH
+            </p>
+
+            <h4><u>Boost Converter</u></h4>
+            <img src="fotos/ckto1.png" width="700">
+            <p>
+                - Voltaje de entrada (3.6[V] - 3.9[V])<br>
+                - Volatje de salida (5 [V])<br>
+                - Corriente de salida (3 [A])
+                <br>
+            </p>
+            <b>Requerimientos:</b><br>
+            <p><b>1. Ciclo de trabajo</b></p>
+            <p>
+                Eficiencia al 80% -> Disipación de energía<br>
+                Ciclo del trabajo < 0.5 ∴ R<sub>1</sub> ≈ 0
+            </p>
+            <img src="fotos/ec1.png" width="200">
+            <p><b>2. Cambio de corriente</b></p>
+            <p>I<sub>ripple</sub> ≈ 0.4×I<sub>out</sub></p>
+            <img src="fotos/ec2.png" width="200">
+            <p><b>3. Inductancia</b></p>
+            <img src="fotos/ec3.png" width="200">
+            <p><b>4. Voltaje de ripple del condensador</b></p>
+            <p>ESR  es la resistencia interna del condensador</p>
+            <img src="fotos/ec4.png" width="300">
+            <p><b>5. Condensador</b></p>
+            <p>
+                C = 1[μH]<br><br>
+                Condensador cerámico<br> 
+                - Voltajes pequeños<br>
+                - Frecuencias relativamente altas
+            </p>
+            <img src="fotos/ec5.png" width="200">
+            <p><b>6. Diodo Schottky</b></p>
+            <p>
+                - I<sub>pico</sub> alta <br>
+                -Más rápido ∴ más eficiente
+            </p>
+            <img src="fotos/ec6.png" width="200">
+            <p><b>7. Mosfet N</b></p>
+            <p>
+                IRF-7XX N-Channel Power Mosfet <br>
+                IRF-740 cumple con ID = 10[A] y Vds = 100[V ] 
+            </p>
+            <img src="fotos/ec7.png" width="300">
+            <p><b>8. Simulación</b></p>
+            <img src="fotos/simulacion1.png" width="700">
+
+
+            <h4><u>Cambio de fuente de energía</u></h4><br>
+            <img src="fotos/ckto2.png" width="600">
+            <p>
+                1)	Condensador de desacoplo -> C=10[nF] <br><br> 
+                2)	Resistencia de pull-down -> R=1[KΩ] 
+            </p>
+            <img src="fotos/diagrama.png" width="500">
+            <p>
+                3)	Mosfet P<br>
+                IRF-9xxx P-Channel Power Mosfet.<br> 
+                IRF-9540 cumple con ID = −19[A] y Vds = −100[V ]<br><br> 
+                4)	Diodo Schottky<br><br> 
+                5)	Simulación
+            </p>
+            <img src="fotos/simulacion2.png" width="700">
+            <h4><u>Anexo</u></h4>
+            <img src="fotos/anexo1.png" width="300">
+        </div>
+    </main>
+    <footer class="page-footer">
+        <h5 class="footer">Carla Fonfach - Diego Moya - Valentina Muñoz</h5>
+
+    </footer>
+
+</body>
+</html>

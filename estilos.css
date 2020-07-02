@@ -1,0 +1,31 @@
+
+.header{
+    padding: 0rem 0;
+    text-align: center;
+
+}
+.carousel {
+    display: flex;
+    align-items: center;
+}
+.caja{
+    display: flex;
+    align-items: center;
+}
+.footer{
+    padding: 1rem 0;
+    text-align: center;
+}
+#imagen {
+    align-items: center;
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    border-radius: 5%;
+}
+
+
+
+
+
