@@ -2,18 +2,18 @@
 let posicionActual = 0;
 
 const TEXTOS = [
-    'text1.json',
-    'text2.json',
-    'text3.json',
-    'text4.json',
-    'text5.json'
+    'database/text/text1.json',
+    'database/text/text2.json',
+    'database/text/text3.json',
+    'database/text/text4.json',
+    'database/text/text5.json'
 ];
 const IMAGENES = [
-    'img/1.png',
-    'img/2.png',
-    'img/3.png',
-    'img/4.png',
-    'img/5.png'
+    'database/img/1.png',
+    'database/img/2.png',
+    'database/img/3.png',
+    'database/img/4.png',
+    'database/img/5.png'
 ];
 
 window.onload = function () {
